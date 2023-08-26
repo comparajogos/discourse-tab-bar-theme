@@ -28,11 +28,6 @@ html:not(.anon) {
     transition: all 0.1s ease-out;
     bottom: $bar-height;
   }
-
-  button.btn-floating.open-new-message-btn {
-    transition: all 0.1s ease-out;
-    bottom: $bar-height-10;
-  }
 }
 
 body.tab-bar-hidden {
@@ -100,6 +95,14 @@ body:not(.footer-nav-ipad) .footer-nav {
   display: none;
 }
 
+// from base-mobile.scss' .header-dropdown-toggle.chat-header-icon
+.tab.tab-chat {
+  .icon {
+    .chat-channel-unread-indicator {
+      border-color: var(--primary-very-low);
+    }
+  }
+}
 .has-full-page-chat {
   .d-tab-bar {
     display: none;
