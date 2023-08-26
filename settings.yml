@@ -11,22 +11,22 @@ icons_size:
 tab_1_settings:
   default: "Home, home, /"
   description:
-    en: "Format is: <code>&lt;title&gt;, &lt;FA5 icon&gt;, &lt;relative url or route name&gt;, &lt;enabled? default true (optional)&gt;</code>"
+    en: "Format is: <code>&lt;title&gt;, &lt;FA5 icon&gt;, &lt;relative url or route name&gt;, &lt;enabled? default true (optional)&gt;, &lt;anonymous? default false (optional)&gt;</code>"
 
 tab_2_settings:
-  default: "Profile, user, userActivity.index"
+  default: "Profile, user, userActivity.index, false"
 
 tab_3_settings:
-  default: "Messages, envelope, userPrivateMessages.user.index"
+  default: "Messages, envelope, userPrivateMessages.user.index, false"
 
 tab_4_settings:
-  default: "Bookmarks, bookmark, userActivity.bookmarks"
+  default: "Bookmarks, bookmark, userActivity.bookmarks, false"
 
 tab_5_settings:
-  default: "Preferences, cog, preferences.account"
+  default: "Preferences, cog, preferences.account, false"
 
 tab_6_settings:
-  default: "Notifications, comment, userNotifications.index, false"
+  default: "Notifications, comment, userNotifications.index, false, false"
 
 extend_fa5_icons:
   type: list

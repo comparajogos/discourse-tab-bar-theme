@@ -38,11 +38,6 @@ export default {
         return;
       }
 
-      const user = api.getCurrentUser();
-      if (!user) {
-        return;
-      }
-
       const tabs = parseTabsSettings();
       if (tabs.length === 0) {
         return;
