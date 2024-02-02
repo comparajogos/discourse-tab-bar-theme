@@ -44,6 +44,7 @@ export default {
       }
 
       const router = api.container.lookup("router:main");
+      const user = api.getCurrentUser();
 
       tabs.forEach((tab) => {
         if (tab.destination.indexOf("/") !== -1) {
@@ -60,7 +61,7 @@ export default {
               const usernameParam = router._routerMicrolib.recognizer.names[
                 tab.destination
               ].handlers.some((handler) =>
-                handler.names.some((n) => n === "username")
+                handler.names.some((n) => n === "username"),
               );
               if (usernameParam) {
                 const target = this.modelFor("user");

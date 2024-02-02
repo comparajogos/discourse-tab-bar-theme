@@ -1,5 +1,7 @@
 /* eslint ember/no-private-routing-service: 0 */
-
+import and from "truth-helpers/helpers/and";
+import eq from "truth-helpers/helpers/eq";
+import not from "truth-helpers/helpers/not";
 import Component from "@ember/component";
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
@@ -10,8 +12,9 @@ import { inject as service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import discourseURL from "discourse/lib/url";
 import dIcon from "discourse-common/helpers/d-icon";
-import and from "truth-helpers/helpers/and";
 import { parseTabsSettings, routeToURL } from "../../../d-tab-bar/lib/helpers";
+import concatClass from "discourse/helpers/concat-class";
+import ChatHeaderIconUnreadIndicator from "discourse/plugins/chat/discourse/components/chat/header/icon/unread-indicator";
 
 const SCROLL_MAX = 30;
 const HIDDEN_TAB_BAR_CLASS = "tab-bar-hidden";
@@ -69,7 +72,7 @@ export default class DTabBar extends Component {
   }
 
   <template>
-    {{#if (and this.currentUser this.site.mobileView this.tabs.length)}}
+    {{#if (and this.site.mobileView this.tabs.length)}}
       <div
         class="d-tab-bar"
         {{didInsert this.setupScrollListener}}
@@ -79,11 +82,19 @@ export default class DTabBar extends Component {
           <div
             role="link"
             style={{this.width}}
-            class="tab"
+            class={{concatClass
+              (if (eq tab.destination "chat") "tab tab-chat" "tab")
+              (if (and (not tab.anonymous) (not this.currentUser)) "tab--disabled" "")
+            }}
             data-destination={{tab.destination}}
             {{on "click" (fn this.navigate tab)}}
           >
-            {{dIcon tab.icon}}
+            <span class="icon">
+              {{dIcon tab.icon}}
+              {{#if (eq tab.destination "chat")}}
+                <ChatHeaderIconUnreadIndicator />
+              {{/if}}
+            </span>
             {{#if settings.display_icon_titles}}
               <p class="title">{{tab.title}}</p>
             {{/if}}
