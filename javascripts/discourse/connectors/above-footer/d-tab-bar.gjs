@@ -1,5 +1,6 @@
 /* eslint ember/no-private-routing-service: 0 */
 import and from "truth-helpers/helpers/and";
+import cookie from "discourse/lib/cookie";
 import eq from "truth-helpers/helpers/eq";
 import not from "truth-helpers/helpers/not";
 import Component from "@ember/component";
@@ -53,6 +54,10 @@ export default class DTabBar extends Component {
 
   @action
   navigate(tab) {
+    if (!tab.anonymous && !this.currentUser) {
+      cookie("destination_url", tab.destination);
+      return this.router.replaceWith("login");
+    }
     const destination = tab.destination;
     let url = destination;
     if (this.router._router.hasRoute(destination)) {

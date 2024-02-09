@@ -20,6 +20,8 @@ export function parseTabsSettings() {
 }
 
 export function routeToURL(router, route, user) {
+  if (!user) {
+  }
   const needParams = router._routerMicrolib.recognizer.names[
     route
   ].handlers.some((handler) => handler.names.length > 0);
