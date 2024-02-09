@@ -12,11 +12,8 @@ export function parseTabsSettings() {
   ].forEach((setting) => {
     const props = setting.split(",").map((s) => s.trim());
     if (props.length >= 3 && props[3] !== "false") {
-      list.push({
-        title: props[0],
-        icon: props[1],
-        destination: props[2],
-      });
+      const [title, icon, destination, , anonymous] = props;
+      list.push({ title, icon, destination, anonymous: anonymous === "true" });
     }
   });
   return list;
